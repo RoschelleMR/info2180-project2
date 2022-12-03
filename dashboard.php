@@ -12,6 +12,11 @@ if($filtered == "All"){
     echo all_contacts($conn);
 }
 
+else if ($filtered == "SalesLead"){
+    $sales = "Sales Lead";
+    echo only_sales($conn, $sales);
+}
+
 
 function all_contacts($conn){
     $stmt = $conn->query("SELECT * FROM Contacts");
@@ -37,6 +42,31 @@ function all_contacts($conn){
 
     echo "</table>";
 
+}
+
+function only_sales($conn, $sales){
+    $stmt = $conn->query("SELECT * FROM Contacts WHERE type LIKE '%$sales%'");
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo "<table>";
+    echo "<tr>";
+    echo "<th>Name</th>";
+    echo "<th>Email</th>";
+    echo "<th>Company</th>";
+    echo "<th>Type</th>";
+    echo "</tr>";
+
+    foreach($results as $row){
+        $name = $row["title"]. ' ' . $row["firstname"]. ' '.$row["lastname"];
+        echo "<tr>";
+        echo "<td>".$name."</td>";
+        echo "<td>".$row["email"]."</td>";
+        echo "<td>".$row["company"]."</td>";
+        echo "<td>".$row["type"]."</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
 }
 
 ?>
