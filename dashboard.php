@@ -13,8 +13,13 @@ if($filtered == "All"){
 }
 
 else if ($filtered == "SalesLead"){
-    $sales = "Sales Lead";
-    echo only_sales($conn, $sales);
+    $lookup = "Sales Lead";
+    echo only_type($conn, $lookup);
+}
+
+else if ($filtered == "Support"){
+    $lookup = "Support";
+    echo only_type($conn, $lookup);
 }
 
 
@@ -44,8 +49,9 @@ function all_contacts($conn){
 
 }
 
-function only_sales($conn, $sales){
-    $stmt = $conn->query("SELECT * FROM Contacts WHERE type LIKE '%$sales%'");
+// displays one one type of contract (Sales Lead or Support)
+function only_type($conn, $lookup){
+    $stmt = $conn->query("SELECT * FROM Contacts WHERE type LIKE '%$lookup%'");
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo "<table>";
