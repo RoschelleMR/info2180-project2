@@ -1,11 +1,12 @@
 window.addEventListener("load", function(){
     
     let all_btn = document.querySelector(".all");
+    let result = document.querySelector(".result");
 
     all_btn.addEventListener("click", function(event){
         event.preventDefault();
 
-        let url = `dashboard.php?$filterd=All`;
+        let url = `dashboard.php?filter=All`;
         console.log(url);
 
         fetch(url)

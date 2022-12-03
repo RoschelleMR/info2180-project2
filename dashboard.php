@@ -6,7 +6,7 @@ $dbname = 'dolphin_crm';
 
 $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
 
-$filtered = $_GET["filtered"];
+$filtered = $_GET["filter"];
 
 if($filtered == "All"){
     echo all_contacts($conn);
@@ -26,8 +26,9 @@ function all_contacts($conn){
     echo "</tr>";
 
     foreach($results as $row){
+        $name = $row["title"]. ' ' . $row["firstname"]. ' '.$row["lastname"];
         echo "<tr>";
-        echo "<td>".$row["title"]. + " " + $row["firstname"]. + " "+ $row["lastname"]. "</td>";
+        echo "<td>".$name."</td>";
         echo "<td>".$row["email"]."</td>";
         echo "<td>".$row["company"]."</td>";
         echo "<td>".$row["type"]."</td>";
