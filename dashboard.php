@@ -35,6 +35,7 @@ function all_contacts($conn){
     echo "<th>Email</th>";
     echo "<th>Company</th>";
     echo "<th>Type</th>";
+    echo "<th></th>";
     echo "</tr>";
 
     foreach($results as $row){
@@ -44,6 +45,7 @@ function all_contacts($conn){
         echo "<td>".$row["email"]."</td>";
         echo "<td>".$row["company"]."</td>";
         echo "<td>".$row["type"]."</td>";
+        echo "<td>"."<a href='#'>View</a>"."</td>";
         echo "</tr>";
     }
 
@@ -62,6 +64,7 @@ function only_type($conn, $lookup){
     echo "<th>Email</th>";
     echo "<th>Company</th>";
     echo "<th>Type</th>";
+    echo "<th></th>";
     echo "</tr>";
 
     foreach($results as $row){
@@ -71,6 +74,7 @@ function only_type($conn, $lookup){
         echo "<td>".$row["email"]."</td>";
         echo "<td>".$row["company"]."</td>";
         echo "<td>".$row["type"]."</td>";
+        echo "<td>"."<a href='#'>View</a>"."</td>";
         echo "</tr>";
     }
 
