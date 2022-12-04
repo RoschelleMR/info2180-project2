@@ -23,7 +23,18 @@ h2{
     height: 35px;
     width: 400px;
 }
-
+.status-success{
+    color: rgb(23, 223, 136);
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.status-fail{
+    color: rgb(231, 35, 48);
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
 .login-container{
     display: flex;
     align-items: center;

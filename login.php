@@ -12,12 +12,25 @@
     if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['password'])) {
         include "sqlaccess.php";
         if (!empty($user)){
-            if (password_verify($_POST["password"],$user["password"])){
+            if (md5($_POST['password']) == $user['password']){
+                //echo "<h4>Entered Password: ".md5($_POST['password'])."</h4>";#uncomment to see the passwords
+                //echo "</br>";#uncomment to see the passwords
+                //echo "<h4>Stored Password: ".$user['password']."</h4>";#uncomment to see the passwords
+                echo "<h4 class = 'status-success'>Successfully Login</h4>";
                 $_SESSION['valid'] = true;
                 $_SESSION['timeout'] = time();
                 $_SESSION['email'] = $_POST['email'];
-                header("Location:dashboard.php");
+                $_SESSION['id'] = $user['id'];
+                //header("Location:dashboard.php");
             }
+            else{
+                echo "<h4 class = 'status-fail'>Invalid Username/Password</h4>";
+            }
+            // if (password_verify($_POST["password"],$user["password"])){
+            // }
+        }
+        else{
+            echo "<h4 class = 'status-fail'>Invalid Username/Password</h4>";
         }
     }
     ?>
