@@ -10,11 +10,14 @@
     <h2>Login</h2>    
     <?php #This will be the area that stores the session variables, currently dummy values are being used.        
     if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['password'])) {
-    
-        if ($_POST['email'] == 'test@gmail.com' && $_POST['password'] == 'test') {
-            $_SESSION['valid'] = true;
-            $_SESSION['timeout'] = time();
-            $_SESSION['email'] = $_POST['email'];
+        include "sqlaccess.php";
+        if (!empty($user)){
+            if (password_verify($_POST["password"],$user["password"])){
+                $_SESSION['valid'] = true;
+                $_SESSION['timeout'] = time();
+                $_SESSION['email'] = $_POST['email'];
+                header("Location:dashboard.php");
+            }
         }
     }
     ?>
