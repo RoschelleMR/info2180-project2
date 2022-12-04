@@ -46,4 +46,4 @@ CREATE TABLE Notes(
 );
 
  
-INSERT INTO Users (firstname, lastname, password, email, role, created_at)VALUES ('Justin', 'Allen', PASSWORD('password123'), 'admin@project2.com', 'Admin', NOW() );
+INSERT INTO Users (firstname, lastname, password, email, role, created_at)VALUES ('Justin', 'Allen', MD5('password123'), 'admin@project2.com', 'Admin', NOW() );
