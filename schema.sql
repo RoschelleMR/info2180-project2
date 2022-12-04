@@ -46,4 +46,13 @@ CREATE TABLE Notes(
 );
 
  
-INSERT INTO Users (firstname, lastname, password, email, role, created_at)VALUES ('Justin', 'Allen', PASSWORD('password123'), 'admin@project2.com', 'Admin', NOW() );
+INSERT INTO Users (firstname, lastname, password, email, role, created_at)VALUES ('Justin', 'Allen', MD5('password123'), 'admin@project2.com', 'Admin', NOW() );
+
+INSERT INTO Contacts (title, firstname, lastname, email, telephone, company
+, type, assigned_to, created_by, created_at, updated_at) VALUES ('Ms','Erica','Parker','erica23@gmail.com','876-444-8743','Rhoden West','Support', 1, 1, NOW(),NOW());
+
+INSERT INTO Contacts (title, firstname, lastname, email, telephone, company
+, type, assigned_to, created_by, created_at, updated_at) VALUES ('Prof','John','Brown','johnbrown@gmail.com','876-909-5555','Vancouver Tech','Sales Lead', 1, 1, NOW(),NOW());
+
+INSERT INTO Contacts (title, firstname, lastname, email, telephone, company
+, type, assigned_to, created_by, created_at, updated_at) VALUES ('Dr','Jim','Bo','jimbo@yahoo.com','876-123-4567','Cruise Limited','Support', 1, 1, NOW(),NOW());

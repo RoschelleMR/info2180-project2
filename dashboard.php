@@ -1,6 +1,8 @@
 <?php
+session_start();
+
 $host = 'localhost';
-$username = 'project2';
+$username = 'project2'; //depends on system
 $password = 'password123';
 $dbname = 'dolphin_crm';
 

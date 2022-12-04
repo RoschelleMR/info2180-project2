@@ -1,55 +1,52 @@
-<?php
-session_start();
-
-$host = 'localhost';
-$username = 'project2';
-$password = 'password123';
-$dbname = 'dolphin_crm';
-
-$conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-
-
-
-$user_input1 = $_POST['email'];
-$user_email = htmlspecialchars($user_input1);
-$user_input2 = $_POST['password'];
-$user_pass = htmlspecialchars($user_input2);
-
-
-check($conn, $user_email,$user_pass);
-
-
-function check($conn, $user_email, $user_pass){
-
-    $hashedPass = MD5($user_pass); //hash user's entered password first (same as sql)
-
-    $stmt = $conn->query("SELECT * FROM Users WHERE email='$user_email' AND password='$hashedPass'"); 
-    //since password alr hashed in sql, search for the newly hashed user input to the hashed sql password
-
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if(!empty($results)) {
-
-        foreach($results as $row){
-            
-            if ($row['email'] === $user_email && $row['password'] === $hashedPass) {
-                //checks if the hashed user input equal to the sql password in phpmyadmin 
-                //(which is hashed as well with the same algorithm[MD5])
-            echo "Login Successful!";
-
-            $user_name = $row["firstname"]. ' '.$row["lastname"];
-
-            $_SESSION['id'] = $row['id']; //saves global variable to be used in other pages
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['name'] = $user_name;
-
-            header ("Location: index.php?success=Login was correct");
-            //this is temporary, wanted to test out redirecting with php and using GET (like a handshake, pree index.php)
-            exit();
-
-        }}
-
-    }
-}
-
+<?php session_start();
 ?>
+
+<html>
+<head>
+    <link rel = "stylesheet" href ="login.css"> 
+</head>
+<?php include "header.php"?>
+<body>
+    <h2>Login</h2>    
+    <?php #This will be the area that stores the session variables, currently dummy values are being used.        
+    if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+        include "sqlaccess.php";
+        if (!empty($user)){
+            if (md5($_POST['password']) == $user['password']){
+                //echo "<h4>Entered Password: ".md5($_POST['password'])."</h4>";#uncomment to see the passwords
+                //echo "</br>";#uncomment to see the passwords
+                //echo "<h4>Stored Password: ".$user['password']."</h4>";#uncomment to see the passwords
+                echo "<h4 class = 'status-success'>Successfully Login</h4>";
+                $_SESSION['valid'] = true;
+                $_SESSION['timeout'] = time();
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['id'] = $user['id'];
+                header("Location:home.php");
+            }
+            else{
+                echo "<h4 class = 'status-fail'>Invalid Username/Password</h4>";
+            }
+            // if (password_verify($_POST["password"],$user["password"])){
+            // }
+        }
+        else{
+            echo "<h4 class = 'status-fail'>Invalid Username/Password</h4>";
+        }
+    }
+    ?>
+    <div class = "login-container">
+        <form class = "form-login" role = "form" action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method = "post">
+        <div class = "input-container">
+            <input type = "text" class = "form-control" name = "email" placeholder = "Email address" required autofocus></br>
+        </div>
+        <div class = "input-container">
+            <input type = "password" class = "form-control" name = "password" placeholder = "Password" required></br>
+        </div>
+        <div class = "submit-container">
+            <button class = "form-but" type = "submit" name = "login">Login</button>
+        </div>
+        </form>         
+    </div> 
+    <?php include "footer.php"?>  
+   </body>
+</html>
