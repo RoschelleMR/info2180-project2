@@ -2,8 +2,8 @@
 session_start();
 
 $host = 'localhost';
-$username = 'project2'; //depends on system
-$password = 'password123';
+$username = 'root'; //depends on system
+$password = '';
 $dbname = 'dolphin_crm';
 
 $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
@@ -48,7 +48,13 @@ function all_contacts($conn){
         echo "<td>".$name."</td>";
         echo "<td>".$row["email"]."</td>";
         echo "<td>".$row["company"]."</td>";
-        echo "<td>".$row["type"]."</td>";
+        if ($row["type"] == "Sales Lead"){
+            echo "<td class='sales_type'>".$row["type"]."</td>";
+        }
+        else if($row["type"] == "Support"){
+            echo "<td class='support_type'>".$row["type"]."</td>";
+        }
+
         echo "<td>"."<a href='#'>View</a>"."</td>"; #should go to the implementation of view full contact details
         echo "</tr>";
     }
@@ -77,7 +83,12 @@ function only_type($conn, $lookup){
         echo "<td>".$name."</td>";
         echo "<td>".$row["email"]."</td>";
         echo "<td>".$row["company"]."</td>";
-        echo "<td>".$row["type"]."</td>";
+        if ($lookup == "Sales Lead"){
+            echo "<td class='sales_type'>".$row["type"]."</td>";
+        }
+        else if($lookup == "Support"){
+            echo "<td class='support_type'>".$row["type"]."</td>";
+        }
         echo "<td>"."<a href='#'>View</a>"."</td>";
         echo "</tr>";
     }
@@ -106,6 +117,13 @@ function assigned_to($conn){
         echo "<td>".$name."</td>";
         echo "<td>".$row["email"]."</td>";
         echo "<td>".$row["company"]."</td>";
+        
+        if ($row["type"] == "Sales Lead"){
+            echo "<td class='sales_type'>".$row["type"]."</td>";
+        }
+        else if($row["type"] == "Support"){
+            echo "<td class='support_type'>".$row["type"]."</td>";
+        }
         echo "<td>".$row["type"]."</td>";
         echo "<td>"."<a href='#'>View</a>"."</td>";
         echo "</tr>";

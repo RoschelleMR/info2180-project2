@@ -7,39 +7,43 @@
     <title>Dolphin CRM</title>
 
     <script src="dashboard.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="dashboard.css">
   </head>
   <body>
     <header>
-      <!-- <img src="images/" alt="Dolphin" /> -->
+      <img src="dolphin_logo.png" alt="Dolphin" />
       <h1>Dolphin CRM</h1>
     </header>
     <main>
-      <div class="main_container">
-        <div id="table_container">
-            <div class="main_head">
-                <h2>Dashboard</h2> 
-                <button>+ Add Contact</button>
-            </div>
-            <div>
-                <p>Filter By</p>
-                <button class="all">All</button>
-                <button class="sales_leads">Sales Leads</button>
-                <button class="support">Support</button>
-                <button class="to_me">Assigned to me</button>
-            </div>
-            <div class="result">
-                <!-- where table appears -->
-            </div>
-        </div>
-      </div>
       <div class="sidebar">
-        <a href="#">Home</a>
-        <a href="#">New Contact</a>
-        <a href="#">Users</a>
-        <hr>
-        <a href="#">Logout</a>
-      </div>
+          <a href="#">Home</a>
+          <a href="#">New Contact</a>
+          <a href="#">Users</a>
+          <hr>
+          <a href="#">Logout</a>
+        </div>
+      <div class="main_container">
+        <div class="main_head">
+            <h2>Dashboard</h2> 
+            <button>+ Add Contact</button>
+        </div>
+        <div class= "second_container">
+          <div class="table_container">       
+              <div class= "table_header">
+                  <p>Filter By:</p>
+                  <button class="all">All</button>
+                  <button class="sales_leads">Sales Leads</button>
+                  <button class="support">Support</button>
+                  <button class="to_me">Assigned to me</button>
+              </div>
+              <div class="result">
+                  <!-- where table appears -->
+              </div>
+          </div>
+
     </div>
     </main>
+
+    <footer><p>Copyright © 2022 Dolphin CRM</p></footer>
   </body>
 </html>
