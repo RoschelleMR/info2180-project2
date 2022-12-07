@@ -21,7 +21,7 @@
                 $_SESSION['timeout'] = time();
                 $_SESSION['email'] = $_POST['email'];
                 $_SESSION['id'] = $user['id'];
-                //header("Location:dashboard.php");
+                header("Location:dashboard.php");
             }
             else{
                 echo "<h4 class = 'status-fail'>Invalid Username/Password</h4>";

@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
-$username = 'lab5_user';
-$password = 'password123';
+$username = 'root';
+$password = '';
 $dbname = 'dolphin_crm';
 
 $link = mysqli_connect($host, $username, $password, $dbname);
