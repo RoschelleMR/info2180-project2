@@ -10,11 +10,13 @@ if(isset($_SESSION['logged-in'])){
         $lastname = filter_var($_POST['lname'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
         $password = filter_var($_POST['pswd'], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+        $role = $_POST['role'];
 
         $firstname = strtolower($firstname);
         $firstname = ucfirst($firstname);
         $lastname = strtolower($lastname);
         $lastname = ucfirst($lastname);
+        $role = $_POST['role'];
 
         $regex_string = "/^[a-zA-Z]+$/";
         $regex_password = "/^(?=.+[0-9])(?=.+[a-z])(?=.+[A-Z])([a-zA-Z0-9]+)$/";
@@ -23,7 +25,7 @@ if(isset($_SESSION['logged-in'])){
             if(strlen($password) >= 8 && preg_match($regex_password, $password)){
                 $hash = password_hash($password, PASSWORD_DEFAULT);
                 try{
-                    $query = "INSERT INTO Users (firstname, lastname, password, email) VALUES ('{$firstname}','{$lastname}','{$hash}','{$email}')";
+                    $query = "INSERT INTO Users (firstname, lastname, password, email,role) VALUES ('{$firstname}','{$lastname}','{$hash}','{$email}', '{$role}')";
                     $conn->exec($query);
                     echo "SA";
                 }catch(Error $e){
