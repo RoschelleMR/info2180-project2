@@ -45,7 +45,7 @@ session_start();
                     <input id="e_mail" name="email" type="email" class="txtbox"required><br><br>
                     </div>
                   
-                    <select name="Status">
+                    <select name="role">
                     <option value="Admin">Admin</option>
                     <option value="Member">Member</option>
                     </select>
