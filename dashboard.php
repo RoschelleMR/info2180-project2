@@ -124,7 +124,6 @@ function assigned_to($conn){
         else if($row["type"] == "Support"){
             echo "<td class='support_type'>".$row["type"]."</td>";
         }
-        echo "<td>".$row["type"]."</td>";
         echo "<td>"."<a href='#'>View</a>"."</td>";
         echo "</tr>";
     }
