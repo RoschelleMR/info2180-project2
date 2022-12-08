@@ -17,7 +17,7 @@
     <main>
       <div class="sidebar">
           <a href="#">Home</a>
-          <a href="#">New Contact</a>
+          <a href="newcontact.php">New Contact</a>
           <a href="#">Users</a>
           <hr>
           <a href="#">Logout</a>
@@ -25,7 +25,9 @@
       <div class="main_container">
         <div class="main_head">
             <h2>Dashboard</h2> 
-            <button>+ Add Contact</button>
+            <form>
+              <button formaction="newcontact.php">+ Add Contact</button>
+            </form>
         </div>
         <div class= "second_container">
           <div class="table_container">       
